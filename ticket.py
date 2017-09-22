@@ -20,7 +20,11 @@ import requests
 import re
 from docopt import docopt
 from stations import stations
+from stcode import stcodes
 from prettytable import PrettyTable
+from colorama import init, Fore
+
+init()
 
 # 封装一个简单的类来解析数据
 class TrainsCollection:
@@ -49,8 +53,8 @@ class TrainsCollection:
             if not self.options or initial in self.options:
                 train = [
                     train_no,
-                    '\n'.join([raw_train[5], raw_train[6]]),
-                    '\n'.join([raw_train[8], raw_train[9]]),
+                    '\n'.join([Fore.GREEN + stcodes[raw_train[6]] + Fore.RESET, Fore.RED + stcodes[raw_train[5]] + Fore.RESET]),
+                    '\n'.join([Fore.GREEN + raw_train[8] + Fore.RESET, Fore.RED + raw_train[9] + Fore.RESET]),
                     self._get_duration(raw_train),
                     raw_train[31],
                     raw_train[30],
@@ -65,9 +69,12 @@ class TrainsCollection:
     def pretty_print(self):
         pt = PrettyTable()
         pt._set_field_names(self.header)
+        num = 0
         for train in self.trains:
             pt.add_row(train)
+            num += 1
         print(pt)
+        print(Fore.GREEN + '一共查询到 %s 趟列车' % num + Fore.RESET)
 
 def cli():
     '''命令行接口'''
