@@ -49,8 +49,8 @@ class TrainsCollection:
     def trains(self):
         for raw_train in self.available_trains:
             train_no = raw_train[3]
-            initial = train_no[0].lower()
-            if not self.options or initial in self.options:
+            initial = train_no[0].lower()    # 取车次中的首字母
+            if not self.options or initial in self.options: 
                 train = [
                     train_no,
                     '\n'.join([Fore.GREEN + stcodes[raw_train[6]] + Fore.RESET, Fore.RED + stcodes[raw_train[5]] + Fore.RESET]),
