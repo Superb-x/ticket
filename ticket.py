@@ -52,7 +52,7 @@ class TrainsCollection:
             if not self.options or initial in self.options: 
                 train = [
                     train_no,
-                    '\n'.join([Fore.GREEN + stcodes[raw_train[6]] + Fore.RESET, Fore.RED + stcodes[raw_train[5]] + Fore.RESET]),
+                    '\n'.join([Fore.GREEN + stcodes[raw_train[6]] + Fore.RESET, Fore.RED + stcodes[raw_train[7]] + Fore.RESET]),
                     '\n'.join([Fore.GREEN + raw_train[8] + Fore.RESET, Fore.RED + raw_train[9] + Fore.RESET]),
                     self._get_duration(raw_train),
                     raw_train[31],
