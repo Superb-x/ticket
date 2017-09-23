@@ -17,7 +17,6 @@ Example:
     ticket -gd 长沙 北京 2017-10-07    
 '''
 import requests
-import re
 from docopt import docopt
 from stations import stations
 from stcode import stcodes
@@ -94,6 +93,7 @@ def cli():
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36'
     }
+    # 关闭证书警告
     requests.packages.urllib3.disable_warnings()
     # 添加verify=False 不验证证书
     r = requests.get(url, headers=headers, verify=False)
