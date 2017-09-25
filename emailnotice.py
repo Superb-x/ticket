@@ -17,7 +17,7 @@ class Email:
         # 接收参数: 发件人地址
         self.from_addr = '172564615@qq.com'
         # 接收参数: 客户端授权密码
-        self.passwd = 'qmowhxwduhaacabg'
+        self.passwd = 'llss2213'
         # 接收参数: 收件人地址,可多个
         self.to_addrs = [
             '943572695@qq.com',
