@@ -17,14 +17,14 @@ class Email:
         # 接收参数: 发件人地址
         self.from_addr = '172564615@qq.com'
         # 接收参数: 客户端授权密码
-        self.passwd = 'llss2213'
+        self.passwd = 'qmowhxwduhaacabg'
         # 接收参数: 收件人地址,可多个
         self.to_addrs = [
             '943572695@qq.com',
             'nearwind_x@163.com'
         ]
         # 接收参数: SMTP服务器(注意:是发件人的smtp服务器)
-        self.smtp_server = 'smtp.qq.com'
+        self.smtp_server = 'smtp.qq.com' # 注意是HTTPS服务
 
         # 接收参数: 邮件主题
         self.subject = '余票提醒'
@@ -44,9 +44,9 @@ class Email:
     # 发送邮件
     # =========================================================================
     def sendm(self):
+        # SMTP服务器设置(地址,端口):
+        server = smtplib.SMTP_SSL(self.smtp_server, 465)
         try:
-            # SMTP服务器设置(地址,端口):
-            server = smtplib.SMTP_SSL(self.smtp_server, 465)
             # server.set_debuglevel(1)
             # 连接SMTP服务器(发件人地址, 客户端授权密码)
             server.login(self.from_addr, self.passwd)
