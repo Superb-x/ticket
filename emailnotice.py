@@ -41,7 +41,7 @@ class Email:
             self.html += '<div><span>{0}</span> ' \
                           '<span style="color: red">{1}</span> ' \
                           '<span style="color: green">{2}</span> ' \
-                          '<span>{3}</span> 已出票，请尽快抢票 </div>'.format(info['train_date'], info['train_num'], info['train_trip'], info['train_time'])
+                          '<span>{3}</span> 还有余票，请尽快抢票 </div>'.format(info['train_date'], info['train_num'], info['train_trip'], info['train_time'])
 
         self.msg.attach(MIMEText(self.html, 'html', 'utf-8'))
         self.msg['Subject'] = Header(str(self.subject), 'utf-8').encode()
