@@ -20,7 +20,7 @@ class Email:
         self.passwd = 'qmowhxwduhaacabg'
         # 接收参数: 收件人地址,可多个
         self.to_addrs = [
-            '943572695@qq.com',
+            'liuxianglin@bjscfl.com',
             'nearwind_x@163.com'
         ]
         # 接收参数: SMTP服务器(注意:是发件人的smtp服务器)
@@ -34,7 +34,7 @@ class Email:
 
         # 接收参数: 邮件正文
         for info in self.train_info:
-            self.plain += '{0} {1} {2} 已出票，请尽快抢票 \n'.format(info['train_date'], info['train_num'], info['train_trip'])
+            self.plain += '{0} {1} {2} {3} 已出票，请尽快抢票 \n'.format(info['train_date'], info['train_num'], info['train_trip'], info['train_time'])
 
         self.msg = MIMEText(str(self.plain), 'plain', 'utf-8')
         self.msg['Subject'] = Header(str(self.subject), 'utf-8').encode()
@@ -148,7 +148,7 @@ def search():
     for item in data:
         available_trains.append(item.split('|'))
     TrainsCollection(available_trains, options, date).send()
-    time.sleep(10 * 60)  # 刷新间隔，频率不建议太高，容易被12306封
+    time.sleep(5 * 60)  # 刷新间隔，频率不建议太高，容易被12306封
 
 if __name__ == '__main__':
     while True:
