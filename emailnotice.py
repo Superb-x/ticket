@@ -6,6 +6,7 @@ from stations import stations
 from stcode import stcodes
 from email.header import Header
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from email.utils import formatdate
 
 class Email:
@@ -30,13 +31,19 @@ class Email:
         self.subject = '余票提醒'
 
         # 实例化正文
-        self.plain = ''
+        self.html = ''  # 将邮件用HTML的形式发过去
+
+        # 指定subtype为alternative，同时支持html和plain格式
+        self.msg = MIMEMultipart('alternative')
 
         # 接收参数: 邮件正文
         for info in self.train_info:
-            self.plain += '{0} {1} {2} {3} 已出票，请尽快抢票 \n'.format(info['train_date'], info['train_num'], info['train_trip'], info['train_time'])
+            self.html += '<div><span>{0}</span> ' \
+                          '<span style="color: red">{1}</span> ' \
+                          '<span style="color: green">{2}</span> ' \
+                          '<span>{3}</span> 已出票，请尽快抢票 </div>'.format(info['train_date'], info['train_num'], info['train_trip'], info['train_time'])
 
-        self.msg = MIMEText(str(self.plain), 'plain', 'utf-8')
+        self.msg.attach(MIMEText(self.html, 'html', 'utf-8'))
         self.msg['Subject'] = Header(str(self.subject), 'utf-8').encode()
         self.msg['Date'] = formatdate()
 
