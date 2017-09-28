@@ -155,8 +155,11 @@ def search():
     for item in data:
         available_trains.append(item.split('|'))
     TrainsCollection(available_trains, options, date).send()
-    time.sleep(5 * 60)  # 刷新间隔，频率不建议太高，容易被12306封
+    time.sleep(60)  # 刷新间隔，频率不建议太高，容易被12306封
 
 if __name__ == '__main__':
     while True:
-        search()
+        try:
+            search()
+        except:
+            search()
